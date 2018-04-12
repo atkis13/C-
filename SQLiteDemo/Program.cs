@@ -39,10 +39,25 @@ namespace SQLiteD
                 }
             }
             
+           
             db.CloseConnection();
             Console.ReadKey();
 
 
         }
+         public static void getDatatoGridView(DataGridView dg)
+         {
+            c = new Connection();
+            string query = "Select * From worklog";
+            c.OpenConnection();
+            SQLiteDataAdapter dataap = new SQLiteDataAdapter(query, c.con);
+            //SQLiteCommand comm = new SQLiteCommand(query, c.con);
+            DataSet ds = new System.Data.DataSet();
+            dataap.Fill(ds);
+            dg.DataSource = ds.Tables[0];
+           
+            c.CloseConnection();
+          }
+            
     }
 }
